@@ -1,35 +1,19 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import '../styles/index.css';
+import Menu from './Menu';
+import Users from './pages/Users';
 
-const App = () => {
-  const addRows = () => [
-    <tr key={Math.round(Math.random() * 30)}>
-      <td>Ulises</td>
-      <td>ukisessg@gmail.com</td>
-      <td>ulisessg.com</td>
-    </tr>,
-    <tr key={Math.round(Math.random() * 30)}>
-      <td>Platzi</td>
-      <td>platzi@platzi.com</td>
-      <td>platzi.com</td>
-    </tr>,
-  ];
-  return (
-    <div className='margin'>
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Enlace</th>
-          </tr>
-        </thead>
+const Tasks = () => <div>Si</div>;
 
-        <tbody>{addRows()}</tbody>
-      </table>
-    </div>
-  );
-};
+const App = () => (
+  <BrowserRouter>
+    <Menu />
+    <Switch>
+      <Route exact path='/' component={Users} />
+      <Route exact path='/task' component={Tasks} />
+    </Switch>
+  </BrowserRouter>
+);
 
 export default App;

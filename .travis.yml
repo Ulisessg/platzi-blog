@@ -24,6 +24,6 @@ deploy:
   github_token: $PLATZI-BLOG
   local-dir: dist/
   target_branch: gh-pages
-  commit_message: 'New deploy'
+  commit_message: 'New deploy :D'
   on:
     branch: master
