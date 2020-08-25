@@ -1,0 +1,29 @@
+language: node_js
+
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+node_js:
+  - '12'
+git:
+  depth: 3
+
+scripts:
+  - yarn build
+
+jobs:
+  include:
+    - stage: test
+      script: yarn lint
+
+deploy:
+  provider: pages
+  keep_history: true
+  skip_cleanup: true
+  github_token: $PLATZI-BLOG
+  local-dir: dist/
+  target_branch: gh-pages
+  commit_message: 'New deploy'
+  on:
+    branch: master
