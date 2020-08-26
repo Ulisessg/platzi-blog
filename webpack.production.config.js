@@ -1,27 +1,22 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  mode: 'production',
-
-  entry: path.resolve(__dirname, 'src/index.js'),
-
+  entry: {
+    app: path.resolve(__dirname, 'src/index.js'),
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/bundle.[hash].js',
+    chunkFilename: 'js/[id].[chunkhash].js',
   },
-
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
-    }),
-    new MiniCssExtractPlugin(),
-  ],
 
   module: {
     rules: [
@@ -34,16 +29,27 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, { loader: 'css-loader' }],
       },
       {
-        test: /\.(png|jpg|svg)$/i,
-        use: [
-          {
-            loader: 'file-loader',
+        test: /\.(png|jpg|svg|gif|eot|ttf|mp4|webm)$/i,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 1000,
           },
-        ],
+        },
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].css',
+    }),
+    new OptimizeCssAssetsPlugin(),
+  ],
 };
