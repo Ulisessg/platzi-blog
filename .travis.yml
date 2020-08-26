@@ -9,12 +9,8 @@ node_js:
 git:
   depth: 3
 
-jobs:
-  include:
-    - stage: test
-      script: yarn lint
-    - deploy:
-      script: yarn build
+script:
+  - yarn build
 
 deploy:
   provider: pages
