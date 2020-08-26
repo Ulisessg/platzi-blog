@@ -19,9 +19,8 @@ jobs:
 deploy:
   provider: pages
   keep_history: true
-  skip_cleanup: true
   github_token: $PLATZI_BLOG
-  local-dir: dist/
+  local_dir: dist/
   target_branch: gh-pages
   commit_message: 'New deploy :D'
   on:
