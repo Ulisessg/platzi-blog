@@ -21,7 +21,7 @@ deploy:
   provider: pages
   keep_history: true
   skip_cleanup: true
-  github_token: $PLATZI-BLOG
+  github_token: $PLATZI_BLOG
   local-dir: dist/
   target_branch: gh-pages
   commit_message: 'New deploy :D'
