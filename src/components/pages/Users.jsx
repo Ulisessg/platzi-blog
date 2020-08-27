@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import '../../styles/index.css';
+import { connect } from 'react-redux';
 
-const Users = () => {
-  const [users, useUsers] = useState([]);
+class Users extends React.PureComponent {
+  render() {
+    console.log(this.props);
+    const { users } = this.props;
+    return (
+      <div>
+        <table className='table'>
+          <thead>
+            <tr>
+              <th>Nombre</th>
 
-  const API = 'https://jsonplaceholder.typicode.com/users';
-  useEffect(() => {
-    fetch(API)
-      .then((response) => response.json())
-      .then((data) => useUsers(data));
-  }, []);
+              <th>Email</th>
 
-  return (
-    <div className='margin'>
-      <table className='table'>
-        <thead>
-          <tr>
-            <th>Nombre</th>
+              <th>Enlace</th>
+            </tr>
+          </thead>
 
-            <th>Email</th>
+          <tbody>
+            {users.length > 0 &&
+              users.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.name}</td>
 
-            <th>Enlace</th>
-          </tr>
-        </thead>
+                  <td>{user.email}</td>
 
-        <tbody>
-          {users.length > 0 &&
-            users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
+                  <td>{user.website}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
 
-                <td>{user.email}</td>
-
-                <td>{user.website}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
-  );
+const mapReducersToProps = (reducers) => {
+  return reducers.usersReducer;
 };
 
-export default Users;
+export default connect(mapReducersToProps, {})(Users);
