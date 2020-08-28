@@ -14,12 +14,12 @@ const App = () => (
         <div id='margin'>
           <Route
             exact
-            path='https://ulisessg.github.io/platzi-blog'
+            path='https://ulisessg.github.io/platzi-blog/'
             component={Users}
           />
           <Route
             exact
-            path='https://ulisessg.github.io/platzi-blog//task'
+            path='https://ulisessg.github.io/platzi-blog/task'
             component={Tasks}
           />
         </div>
