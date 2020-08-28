@@ -11,6 +11,9 @@ import reducers from './reducers';
 //Components
 import App from './components/App';
 
+//Async
+import regeneratorRuntime from 'regenerator-runtime';
+
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDom.render(
