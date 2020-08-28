@@ -13,7 +13,12 @@ class Users extends React.PureComponent {
   }
 
   render() {
-    const { users } = this.props;
+    const { users, error } = this.props;
+
+    if (error) {
+      return <h1>Lo sentimos ocurrió un error obteniendo los usuarios</h1>;
+    }
+
     return (
       <div>
         <table className='table'>
