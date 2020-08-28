@@ -12,8 +12,8 @@ const App = () => (
     <Switch>
       <>
         <div id='margin'>
-          <Route exact path='/' component={Users} />
-          <Route exact path='/task' component={Tasks} />
+          <Route exact path='/platzi-blog' component={Users} />
+          <Route exact path='/platzi-blog/task' component={Tasks} />
         </div>
       </>
     </Switch>

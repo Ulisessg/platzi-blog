@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 const Menu = () => (
   <nav id='menu'>
-    <NavLink to='/'>Usuarios</NavLink>
-    <NavLink to='/task'>Tasks</NavLink>
+    <NavLink to='/platzi-blog'>Usuarios</NavLink>
+    <NavLink to='/platzi-blog/task'>Tasks</NavLink>
   </nav>
 );
 
