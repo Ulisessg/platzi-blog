@@ -12,8 +12,16 @@ const App = () => (
     <Switch>
       <>
         <div id='margin'>
-          <Route exact path='/platzi-blog' component={Users} />
-          <Route exact path='/platzi-blog/task' component={Tasks} />
+          <Route
+            exact
+            path='https://ulisessg.github.io/platzi-blog'
+            component={Users}
+          />
+          <Route
+            exact
+            path='https://ulisessg.github.io/platzi-blog//task'
+            component={Tasks}
+          />
         </div>
       </>
     </Switch>
