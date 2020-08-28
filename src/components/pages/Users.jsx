@@ -1,11 +1,18 @@
 import React from 'react';
 
 import '../../styles/index.css';
+
 import { connect } from 'react-redux';
 
+import * as usersActions from '../../actions/usersActions';
+
 class Users extends React.PureComponent {
+  componentDidMount() {
+    const { getAllUsers } = this.props;
+    getAllUsers();
+  }
+
   render() {
-    console.log(this.props);
     const { users } = this.props;
     return (
       <div>
@@ -38,8 +45,8 @@ class Users extends React.PureComponent {
   }
 }
 
-const mapReducersToProps = (reducers) => {
-  return reducers.usersReducer;
+const mapStateToProps = (reducers) => {
+  return reducers.usersReducers;
 };
 
-export default connect(mapReducersToProps, {})(Users);
+export default connect(mapStateToProps, usersActions)(Users);
