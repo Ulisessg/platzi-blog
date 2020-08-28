@@ -1,9 +1,10 @@
-import { GET_ALL_USERS, ERROR, EMPTY } from '../types/usersTypes';
+import { GET_ALL_USERS, ERROR, EMPTY, LOADING } from '../types/usersTypes';
 
 const INITIAL_STATE = {
   users: [],
   error: false,
   empty: false,
+  loading: true,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -16,6 +17,9 @@ export default (state = INITIAL_STATE, action) => {
 
     case EMPTY:
       return { ...state, empty: true };
+
+    case LOADING:
+      return { ...state, loading: false };
 
     default:
       return state;

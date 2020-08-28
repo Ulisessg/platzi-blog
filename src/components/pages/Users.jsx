@@ -13,7 +13,25 @@ class Users extends React.PureComponent {
   }
 
   render() {
-    const { users, error, empty } = this.props;
+    console.log(this.props);
+    const { users, error, empty, loading } = this.props;
+
+    if (loading) {
+      return (
+        <div className='loading'>
+          <div className='lds-roller'>
+            <div>{/* Animation*/}</div>
+            <div>{/* Animation*/}</div>
+            <div>{/* Animation*/}</div>
+            <div>{/* Animation*/}</div>
+            <div>{/* Animation*/}</div>
+            <div>{/* Animation*/}</div>
+            <div>{/* Animation*/}</div>
+            <div>{/* Animation*/}</div>
+          </div>
+        </div>
+      );
+    }
 
     if (error) {
       return <h1>Lo sentimos ocurrió un error obteniendo los usuarios</h1>;

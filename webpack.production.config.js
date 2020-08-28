@@ -2,7 +2,6 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -13,6 +12,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/bundle.[hash].js',
     chunkFilename: 'js/[id].[chunkhash].js',
+    publicPath: '/platzi-blog',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -41,6 +41,9 @@ module.exports = {
         },
       },
     ],
+  },
+  optimization: {
+    splitChunks: { chunks: 'all', minSize: 0, maxSize: 20000 },
   },
   plugins: [
     new HtmlWebpackPlugin({

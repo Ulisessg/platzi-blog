@@ -14,6 +14,9 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
 
+  optimization: {
+    splitChunks: { chunks: 'all', minSize: 0, maxSize: 20000 },
+  },
   module: {
     rules: [
       {
@@ -25,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['css-loader'],
       },
       {
         test: /\.(png|jpg|svg)$/i,
