@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import '../../styles/menu.css';
 
-const Menu = () => (
+const Menu = (props) => (
   <nav id='menu'>
-    <NavLink to='/'>Usuarios</NavLink>
-    <NavLink to='/task'>Tasks</NavLink>
+    <Link to='/'>Usuarios</Link>
+    <Link to='/task'>Tasks</Link>
   </nav>
 );
 

@@ -13,11 +13,15 @@ import Empty from '../common/Empty';
 import Table from '../common/Table';
 
 class Users extends React.PureComponent {
+  componentDidMount() {
+    const { getAllUsers } = this.props;
+
+    getAllUsers();
+  }
+
   render() {
     const { users, error, empty, loading } = this.props;
 
-    const { getAllUsers } = this.props;
-    getAllUsers();
     if (loading) {
       return <Loading />;
     }

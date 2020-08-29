@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { NavLink } from 'react-router-dom';
+
+import '../../styles/icons.css';
+
 const Table = (props) => {
   const { users } = props;
 
@@ -24,6 +28,11 @@ const Table = (props) => {
               <td>{user.email}</td>
 
               <td>{user.website}</td>
+              <td>
+                <NavLink to={`/publications/${user.id}`}>
+                  <div className='eye-solid2 icon'>{/* Eye icon */}</div>
+                </NavLink>
+              </td>
             </tr>
           ))}
       </tbody>
