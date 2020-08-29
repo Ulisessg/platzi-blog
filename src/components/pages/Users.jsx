@@ -2,71 +2,38 @@ import React from 'react';
 
 import '../../styles/index.css';
 
+//Redux
 import { connect } from 'react-redux';
-
 import * as usersActions from '../../actions/usersActions';
 
-class Users extends React.PureComponent {
-  componentDidMount() {
-    const { getAllUsers } = this.props;
-    getAllUsers();
-  }
+//Components
+import Loading from '../common/Loading';
+import Error from '../common/Error';
+import Empty from '../common/Empty';
+import Table from '../common/Table';
 
+class Users extends React.PureComponent {
   render() {
-    console.log(this.props);
     const { users, error, empty, loading } = this.props;
 
+    const { getAllUsers } = this.props;
+    getAllUsers();
     if (loading) {
-      return (
-        <div className='loading'>
-          <div className='lds-roller'>
-            <div>{/* Animation*/}</div>
-            <div>{/* Animation*/}</div>
-            <div>{/* Animation*/}</div>
-            <div>{/* Animation*/}</div>
-            <div>{/* Animation*/}</div>
-            <div>{/* Animation*/}</div>
-            <div>{/* Animation*/}</div>
-            <div>{/* Animation*/}</div>
-          </div>
-        </div>
-      );
+      return <Loading />;
     }
 
     if (error) {
-      return <h1>Lo sentimos ocurrió un error obteniendo los usuarios</h1>;
+      return <Error />;
     }
 
     if (empty) {
-      return <h1>Se el primero</h1>;
+      return <Empty />;
     }
     {
       return (
         <div>
-          <table className='table'>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-
-                <th>Email</th>
-
-                <th>Enlace</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {users.length > 0 &&
-                users.map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.name}</td>
-
-                    <td>{user.email}</td>
-
-                    <td>{user.website}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+          <h1>Usuarios</h1>
+          <Table users={users} />
         </div>
       );
     }

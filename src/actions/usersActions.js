@@ -37,8 +37,3 @@ export const getAllUsers = () => (dispatch) => {
     }
   });
 };
-
-// dispatch({
-//   type: LOADING,
-//   payload: false,
-// });

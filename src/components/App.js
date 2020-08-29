@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Menu from './Menu';
+import Menu from './common/Menu';
 import Users from './pages/Users';
 
 const Tasks = () => <div>Si</div>;
@@ -12,16 +12,8 @@ const App = () => (
     <Switch>
       <>
         <div id='margin'>
-          <Route
-            exact
-            path='https://ulisessg.github.io/platzi-blog/'
-            component={Users}
-          />
-          <Route
-            exact
-            path='https://ulisessg.github.io/platzi-blog/task'
-            component={Tasks}
-          />
+          <Route exact path='/' component={Users} />
+          <Route exact path='/task' component={Tasks} />
         </div>
       </>
     </Switch>

@@ -12,7 +12,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/bundle.[hash].js',
     chunkFilename: 'js/[id].[chunkhash].js',
-    publicPath: '/platzi-blog',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -47,7 +46,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public/index.html'),
+      template: path.resolve(__dirname, 'production/index.html'),
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
