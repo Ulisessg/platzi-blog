@@ -1,19 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import { connect } from 'react-redux';
 
-import * as usersActions from '../../actions/usersActions';
+import * as publicationsActions from '../../actions/publicationsActions';
 
+//Components
 import Error from '../common/Error';
 import Empty from '../common/Empty';
 import Loading from '../common/Loading';
 
-class Publications extends Component {
-  render() {
-    // eslint-disable-next-line react/destructuring-assignment
-    const { id } = this.props.match.params;
+class Publications extends React.PureComponent {
+  componentDidMount() {
+    const { getAllPosts } = this.props;
+    getAllPosts();
+  }
 
-    const { error, empty, loading } = this.props;
+  render() {
+    //ID
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
+
+    //Publications
+    const { publicationsReducer } = this.props;
+    const { error, empty, loading } = publicationsReducer;
+
+    //Users
+    const { usersReducer } = this.props;
+    const { users } = usersReducer;
 
     if (loading) {
       return <Loading />;
@@ -26,17 +40,23 @@ class Publications extends Component {
     if (empty) {
       return <Empty />;
     }
-    return (
-      <>
-        <h1>Publicaciondes de</h1>
-        <div>{id}</div>
-      </>
-    );
+    {
+      return (
+        <>
+          <h1>Posts de</h1>
+          <div>{id}</div>
+          <div>{users.map((user) => console.log(user))}</div>
+        </>
+      );
+    }
   }
 }
 
-const mapStateToProps = (reducers) => {
-  return reducers.usersReducers;
+const mapStateToProps = ({ publicationsReducer, usersReducer }) => {
+  return {
+    publicationsReducer,
+    usersReducer,
+  };
 };
 
-export default connect(mapStateToProps, usersActions)(Publications);
+export default connect(mapStateToProps, publicationsActions)(Publications);

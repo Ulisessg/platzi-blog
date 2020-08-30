@@ -1,5 +1,6 @@
 import React from 'react';
 
+//Styles
 import '../../styles/index.css';
 
 //Redux
@@ -45,7 +46,7 @@ class Users extends React.PureComponent {
 }
 
 const mapStateToProps = (reducers) => {
-  return reducers.usersReducers;
+  return reducers.usersReducer;
 };
 
 export default connect(mapStateToProps, usersActions)(Users);

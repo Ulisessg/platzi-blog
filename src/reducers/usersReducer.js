@@ -1,4 +1,9 @@
-import { GET_ALL_USERS, ERROR, EMPTY, LOADING } from '../types/usersTypes';
+import {
+  GET_ALL_USERS,
+  USERS_ERROR,
+  USERS_EMPTY,
+  USERS_LOADING,
+} from '../types/usersTypes';
 
 const INITIAL_STATE = {
   users: [],
@@ -12,13 +17,13 @@ export default (state = INITIAL_STATE, action) => {
     case GET_ALL_USERS:
       return { ...state, users: action.payload };
 
-    case ERROR:
+    case USERS_ERROR:
       return { ...state, error: true };
 
-    case EMPTY:
+    case USERS_EMPTY:
       return { ...state, empty: true };
 
-    case LOADING:
+    case USERS_LOADING:
       return { ...state, loading: false };
 
     default:

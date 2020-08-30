@@ -1,5 +1,10 @@
 /* eslint-disable import/prefer-default-export */
-import { GET_ALL_USERS, ERROR, EMPTY, LOADING } from '../types/usersTypes';
+import {
+  GET_ALL_USERS,
+  USERS_ERROR,
+  USERS_EMPTY,
+  USERS_LOADING,
+} from '../types/usersTypes';
 
 export const getAllUsers = () => (dispatch) => {
   fetch('https://jsonplaceholder.typicode.com/users').then(async (response) => {
@@ -11,27 +16,27 @@ export const getAllUsers = () => (dispatch) => {
       });
 
       dispatch({
-        type: LOADING,
+        type: USERS_LOADING,
         payload: false,
       });
     } else if (response.ok && data.length === 0) {
       dispatch({
-        type: EMPTY,
+        type: USERS_EMPTY,
         payload: true,
       });
 
       dispatch({
-        type: LOADING,
+        type: USERS_LOADING,
         payload: false,
       });
     } else {
       dispatch({
-        type: ERROR,
+        type: USERS_ERROR,
         payload: true,
       });
 
       dispatch({
-        type: LOADING,
+        type: USERS_LOADING,
         payload: false,
       });
     }

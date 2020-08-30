@@ -6,9 +6,12 @@ import ReactDom from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
+
 //Async
 // eslint-disable-next-line no-unused-vars
 import regeneratorRuntime from 'regenerator-runtime';
+
+//Reducers
 import reducers from './reducers';
 
 //Components
