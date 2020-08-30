@@ -10,24 +10,26 @@ import Empty from '../common/Empty';
 import Loading from '../common/Loading';
 
 class Publications extends React.PureComponent {
-  componentDidMount() {
-    const { getAllPosts } = this.props;
-    getAllPosts();
-  }
-
-  render() {
+  async componentDidMount() {
     //ID
     const { match } = this.props;
     const { params } = match;
     const { id } = params;
 
+    //Handle fetch
+    const { publicationsReducer } = this.props;
+    const { firstCharge } = publicationsReducer;
+    const { getByUser } = this.props;
+    if (!firstCharge.includes(id)) {
+      getByUser(id);
+    }
+  }
+
+  render() {
     //Publications
+    console.log(this.props);
     const { publicationsReducer } = this.props;
     const { error, empty, loading } = publicationsReducer;
-
-    //Users
-    const { usersReducer } = this.props;
-    const { users } = usersReducer;
 
     if (loading) {
       return <Loading />;
@@ -44,8 +46,8 @@ class Publications extends React.PureComponent {
       return (
         <>
           <h1>Posts de</h1>
-          <div>{id}</div>
-          <div>{users.map((user) => console.log(user))}</div>
+          <div />
+          <div />
         </>
       );
     }

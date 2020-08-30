@@ -4,19 +4,29 @@ import {
   USERS_ERROR,
   USERS_EMPTY,
   USERS_LOADING,
+  USERS_FIRTS_CHARGE,
 } from '../types/usersTypes';
 
-export const getAllUsers = () => (dispatch) => {
+export const getAllUsers = () => (dispatch, getState) => {
   fetch('https://jsonplaceholder.typicode.com/users').then(async (response) => {
+    //Data
+    const { users } = getState().usersReducer;
     const data = await response.json();
+    const usersUpdated = [...users, data];
+
     if (response.ok && data.length >= 1) {
       dispatch({
         type: GET_ALL_USERS,
-        payload: data,
+        payload: usersUpdated,
       });
 
       dispatch({
         type: USERS_LOADING,
+        payload: false,
+      });
+
+      dispatch({
+        type: USERS_FIRTS_CHARGE,
         payload: false,
       });
     } else if (response.ok && data.length === 0) {

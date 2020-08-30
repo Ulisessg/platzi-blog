@@ -16,8 +16,11 @@ import Table from '../common/Table';
 class Users extends React.PureComponent {
   componentDidMount() {
     const { getAllUsers } = this.props;
+    const { firstCharge } = this.props;
 
-    getAllUsers();
+    if (firstCharge) {
+      getAllUsers();
+    }
   }
 
   render() {
@@ -36,10 +39,10 @@ class Users extends React.PureComponent {
     }
     {
       return (
-        <div>
+        <main role='main'>
           <h1>Usuarios</h1>
-          <Table users={users} />
-        </div>
+          {users && <Table users={users[0]} />}
+        </main>
       );
     }
   }

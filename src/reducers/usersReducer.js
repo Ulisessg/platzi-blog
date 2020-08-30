@@ -3,6 +3,7 @@ import {
   USERS_ERROR,
   USERS_EMPTY,
   USERS_LOADING,
+  USERS_FIRTS_CHARGE,
 } from '../types/usersTypes';
 
 const INITIAL_STATE = {
@@ -10,6 +11,7 @@ const INITIAL_STATE = {
   error: false,
   empty: false,
   loading: true,
+  firstCharge: true,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -17,14 +19,17 @@ export default (state = INITIAL_STATE, action) => {
     case GET_ALL_USERS:
       return { ...state, users: action.payload };
 
+    case USERS_FIRTS_CHARGE:
+      return { ...state, firstCharge: action.payload };
+
     case USERS_ERROR:
-      return { ...state, error: true };
+      return { ...state, error: action.payload };
 
     case USERS_EMPTY:
-      return { ...state, empty: true };
+      return { ...state, empty: action.payload };
 
     case USERS_LOADING:
-      return { ...state, loading: false };
+      return { ...state, loading: action.payload };
 
     default:
       return state;

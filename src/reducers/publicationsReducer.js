@@ -3,6 +3,7 @@ import {
   POSTS_EMPTY,
   POSTS_ERROR,
   POSTS_LOADING,
+  POSTS_FIRST_CHARGE,
 } from '../types/publicationsTypes';
 
 const INITIAL_STATE = {
@@ -10,6 +11,7 @@ const INITIAL_STATE = {
   error: false,
   empty: false,
   loading: true,
+  firstCharge: [],
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -18,14 +20,16 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, publications: action.payload };
 
     case POSTS_ERROR:
-      return { ...state, error: true };
+      return { ...state, error: action.payload };
 
     case POSTS_EMPTY:
-      return { ...state, empty: true };
+      return { ...state, empty: action.payload };
 
     case POSTS_LOADING:
-      return { ...state, loading: false };
+      return { ...state, loading: action.payload };
 
+    case POSTS_FIRST_CHARGE:
+      return { ...state, firstCharge: action.payload };
     default:
       return state;
   }
