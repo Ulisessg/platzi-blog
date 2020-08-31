@@ -20,17 +20,22 @@ class Publications extends React.PureComponent {
     const { publicationsReducer } = this.props;
     const { firstCharge } = publicationsReducer;
     const { getByUser } = this.props;
+
     if (!firstCharge.includes(id)) {
       getByUser(id);
     }
   }
 
   render() {
-    //Publications
-    console.log(this.props);
-    const { publicationsReducer } = this.props;
-    const { error, empty, loading } = publicationsReducer;
+    //ID
+    const { match } = this.props;
+    const { params } = match;
+    const { id } = params;
 
+    //Publications
+    const { publicationsReducer } = this.props;
+    const { usersReducer } = this.props;
+    const { error, empty, loading } = publicationsReducer;
     if (loading) {
       return <Loading />;
     }
@@ -43,11 +48,23 @@ class Publications extends React.PureComponent {
       return <Empty />;
     }
     {
+      const user = usersReducer.users[0][id - 1];
+      const publications = publicationsReducer.publications[0];
+
       return (
         <>
-          <h1>Posts de</h1>
-          <div />
-          <div />
+          <h1>
+            Posts de
+            {user.name}
+          </h1>
+          {publications.map((publication) => {
+            return (
+              <div key={publication.id} className='pub_title'>
+                <h2>{publication.title}</h2>
+                <h3>{publication.body}</h3>
+              </div>
+            );
+          })}
         </>
       );
     }

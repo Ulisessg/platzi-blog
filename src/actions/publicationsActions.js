@@ -13,7 +13,9 @@ export const getByUser = (id) => async (dispatch, getState) => {
       //Data
       const { publications } = getState().publicationsReducer;
       const { firstCharge } = getState().publicationsReducer;
+
       const data = await response.json();
+
       const publicationsUpdated = [...publications, data];
       const idsUpdated = [...firstCharge, id];
 
